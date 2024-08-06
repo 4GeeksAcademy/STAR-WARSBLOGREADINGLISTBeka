@@ -1,0 +1,92 @@
+#divprincipal {
+    margin: 5px 2% 2% 2%;
+}
+
+#cardimg {
+    width: 150px;
+    height: 150px;
+    align-items: center;
+    border-radius: 30px;
+
+}
+
+#cardcontenidovehicle {
+    text-align: center;
+    text-align: justify;
+}
+
+#vehicles {
+    margin-top: 3%;
+}
+
+p {
+    margin: 2px;
+    text-align: justify;
+}
+
+#cardcontenido {
+    width: 150px;
+    height: 150px;
+    text-align: start;   
+    align-items: center; 
+}
+
+#cardbutton {
+    width: 150px;
+    height: 150px;
+}
+#cardbuttonvehicle {
+    margin-right: 10%;
+    margin-top: 10%;
+}
+
+
+.btn {
+    margin-right: 10%;
+    margin-top: 5%;
+}
+
+h2 {
+    text-align: start;
+    color: red;
+    font-weight: bold;
+}
+
+#cards-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+}
+
+.card {
+    min-width: 280px;
+    height: 370px;
+    margin: 0 10px;
+    padding: 10px;
+    background-color: rgb(252, 240, 240);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    align-items: center;
+
+}
+
+
+
+#cards-container::-webkit-scrollbar {
+    height: 10px;
+}
+
+#cards-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+#cards-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+#heart{
+    color: red;
+}
