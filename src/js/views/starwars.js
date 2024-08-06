@@ -6,8 +6,9 @@ export const StarWars = () => {
 	const { store, actions } = useContext(Context);
 	const [characters, setCharacters] = useState([]);
 	const [characterDetails, setCharacterDetails] = useState([]);
-	const [vehicles, setVehicles] = useState([]);
 	const [vehicleDetails, setVehicleDetails] = useState([]);
+	const [planets, setPlanets] = useState([]);
+	const [planetDetails, setPlanetDetails] = useState([]);
 
 	const characterImageUrls = {
 		"1": "https://starwars-visualguide.com/assets/img/characters/1.jpg",
@@ -33,6 +34,19 @@ export const StarWars = () => {
 		"19": "https://starwars-visualguide.com/assets/img/vehicles/19.jpg",
 		"20": "https://starwars-visualguide.com/assets/img/vehicles/20.jpg",
 		"24": "https://starwars-visualguide.com/assets/img/vehicles/24.jpg"
+	};
+
+	const planetImageUrls = {
+		"1": "https://starwars-visualguide.com/assets/img/planets/1.jpg",
+		"2": "https://starwars-visualguide.com/assets/img/planets/2.jpg",
+		"3": "https://starwars-visualguide.com/assets/img/planets/3.jpg",
+		"4": "https://starwars-visualguide.com/assets/img/planets/4.jpg",
+		"5": "https://starwars-visualguide.com/assets/img/planets/5.jpg",
+		"6": "https://starwars-visualguide.com/assets/img/planets/6.jpg",
+		"7": "https://starwars-visualguide.com/assets/img/planets/7.jpg",
+		"8": "https://starwars-visualguide.com/assets/img/planets/8.jpg",
+		"9": "https://starwars-visualguide.com/assets/img/planets/9.jpg",
+		"10": "https://starwars-visualguide.com/assets/img/planets/10.jpg"
 	};
 
 	useEffect(() => {
@@ -67,7 +81,6 @@ export const StarWars = () => {
 		fetch("https://www.swapi.tech/api/vehicles/")
 			.then(response => response.json())
 			.then(data => {
-				setVehicles(data.results);
 				return data.results;
 			})
 			.then(results => {
@@ -80,13 +93,37 @@ export const StarWars = () => {
 								name: vehicle.name,
 								model: details.result.properties.model,
 								manufacturer: details.result.properties.manufacturer,
-								vehicle_class: details.result.properties.vehicle_class,
 							}))
 					)
 				);
 			})
 			.then(detailsArray => {
 				setVehicleDetails(detailsArray);
+			})
+			.catch(error => console.log(error));
+
+		// Fetch planets
+		fetch("https://www.swapi.tech/api/planets")
+			.then(response => response.json())
+			.then(data => {
+				return data.results;
+			})
+			.then(results => {
+				return Promise.all(
+					results.map(planet =>
+						fetch(`https://www.swapi.tech/api/planets/${planet.uid}`)
+							.then(response => response.json())
+							.then(details => ({
+								uid: planet.uid,
+								name: planet.name,
+								terrain: details.result.properties.terrain,
+								population: details.result.properties.population,
+							}))
+					)
+				);
+			})
+			.then(detailsArray => {
+				setPlanetDetails(detailsArray);
 			})
 			.catch(error => console.log(error));
 	}, []);
@@ -130,15 +167,38 @@ export const StarWars = () => {
 						<div className="card-body" id="cardcontenidovehicle">
 							<h5>{vehicle.name}</h5>
 							<p>Model: {vehicle.model}</p>
-							<p>Class: {vehicle.vehicle_class}</p>
+							<p>Manufacturer: {vehicle.manufacturer}</p>
 						</div>
-						<div >
+						<div>
 							<button className="btn btn-danger" id="cardbuttonvehicle">Learn More</button>
-							<button className="btn btn-warning" id="cardbuttonvehicle">♥</button>
+							<button className="btn btn-warning" id="cardbuttonvehicle2">♥</button>
 						</div>
 					</div>
 				))}
 			</div>
-		</div >
+			
+			<h2 id="planets">Planets</h2>
+			<div id="cards-container">
+				{planetDetails.map(planet => (
+					<div key={planet.uid} className="card me-3">
+						<img
+							src={planetImageUrls[planet.uid] || "https://example.com/images/default.jpg"}
+							className="card-img-top"
+							alt={`${planet.name}`}
+							id="cardimg"
+						/>
+						<div className="card-body" id="cardcontenidoplanet">
+							<h5>{planet.name}</h5>
+							<p>Terrain: {planet.terrain}</p>
+							<p>Population: {planet.population}</p>
+						</div>
+						<div>
+							<button className="btn btn-danger" id="cardbuttonplanet">Learn More</button>
+							<button className="btn btn-warning" id="cardbuttonplanet2">♥</button>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
 	);
 };
