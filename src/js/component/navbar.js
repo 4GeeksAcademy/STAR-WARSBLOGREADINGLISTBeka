@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import starwarsfoto from "../../img/StarWars.png";
+import starwarsfoto from "../store/img/StarWars.png";
 import "../../styles/index.css"
 
 export const Navbar = () => {
@@ -18,7 +18,7 @@ export const Navbar = () => {
 					Favorites
 				</button>
 				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="#">Dropdown link</a></li>
+					<li><a class="dropdown-item" href="#" onClick={() => actions.addFavorites()}>Dropdown link</a></li>
 					<li><a class="dropdown-item" href="#">Dropdown link</a></li>
 				</ul>
 			</div>
