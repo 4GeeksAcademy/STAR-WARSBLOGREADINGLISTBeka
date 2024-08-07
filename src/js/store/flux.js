@@ -42,7 +42,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				"8": "https://starwars-visualguide.com/assets/img/planets/8.jpg",
 				"9": "https://starwars-visualguide.com/assets/img/planets/9.jpg",
 				"10": "https://starwars-visualguide.com/assets/img/planets/10.jpg"
-			}
+			},
+			favorites: [],
 		},
 		actions: {
 			getCharacters: () => {
@@ -130,11 +131,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("Error fetching planets:", error));
 			},
 
-			addFavorites: () => {
-				alert("¡Hola!");
-			}
-		}
-	};
+			addFavorites: (itemName) => {
+                const store = getStore();
+                const favorites = [...store.favorites];
+                if (!favorites.includes(itemName)) {
+                    favorites.push(itemName);
+                    setStore({ favorites });
+                }
+            }
+        }
+    };
 };
 
 export default getState;
