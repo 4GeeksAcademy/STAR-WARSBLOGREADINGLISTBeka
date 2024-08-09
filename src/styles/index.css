@@ -3,8 +3,21 @@ img {
 }
 
 nav {
-    display: flex;
-    justify-content: space-between;
-    margin: 5px 2% 2% 2%;
-    align-items: center;
+    margin: 5px 70px 2% 2%;
+}
+
+.papelera {
+    background-color: white;
+    border: none;
+}
+
+li {
+display: flex;
+justify-content: space-between;
+flex-direction: row;
+}
+
+#listFavorites {
+    text-wrap: balance;
+    margin-top: 0;
 }

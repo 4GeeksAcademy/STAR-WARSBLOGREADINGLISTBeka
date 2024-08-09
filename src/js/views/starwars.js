@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import "../../styles/home.css";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 export const StarWars = () => {
     const { store, actions } = useContext(Context);
@@ -34,7 +35,9 @@ export const StarWars = () => {
                             <p>Eye Color: {character.eye_color}</p>
                         </div>
                         <div id="cardbutton">
-                            <button className="btn btn-danger">Learn More</button>
+                            <Link to={`/description/${character.uid}`}>
+                                <button className="btn btn-danger">Learn More</button>
+                            </Link>
                             <button
                                 className="btn btn-warning"
                                 id="heart"
@@ -63,7 +66,9 @@ export const StarWars = () => {
                             <p>Manufacturer: {vehicle.manufacturer}</p>
                         </div>
                         <div>
-                            <button className="btn btn-danger" id="cardbuttonvehicle">Learn More</button>
+                            <Link to={`/description/${vehicle.uid}`}>
+                                <button className="btn btn-danger">Learn More</button>
+                            </Link>
                             <button className="btn btn-warning" id="cardbuttonvehicle2" onClick={() => handleAddFavorite(vehicle.name)}>♥</button>
                         </div>
                     </div>
@@ -86,7 +91,9 @@ export const StarWars = () => {
                             <p>Population: {planet.population}</p>
                         </div>
                         <div>
-                            <button className="btn btn-danger" id="cardbuttonplanet">Learn More</button>
+                            <Link to={`/description/${planet.uid}`}>
+                                <button className="btn btn-danger">Learn More</button>
+                            </Link>
                             <button className="btn btn-warning" id="cardbuttonplanet2" onClick={() => handleAddFavorite(planet.name)}>♥</button>
                         </div>
                     </div>

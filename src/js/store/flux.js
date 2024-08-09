@@ -54,21 +54,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore({ characters });
 						return characters;
 					})
-					.then(results => {
-						return Promise.all(
-							results.map(character =>
-								fetch(`https://www.swapi.tech/api/people/${character.uid}`)
-									.then(response => response.json())
-									.then(details => ({
-										uid: character.uid,
-										name: character.name,
-										gender: details.result.properties.gender,
-										hair_color: details.result.properties.hair_color,
-										eye_color: details.result.properties.eye_color
-									}))
-							)
-						);
-					})
+					
 					.then(detailsArray => {
 						setStore({ characterDetails: detailsArray });
 					})
@@ -83,20 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore({ vehicles });
 						return vehicles;
 					})
-					.then(results => {
-						return Promise.all(
-							results.map(vehicle =>
-								fetch(`https://www.swapi.tech/api/vehicles/${vehicle.uid}`)
-									.then(response => response.json())
-									.then(details => ({
-										uid: vehicle.uid,
-										name: vehicle.name,
-										model: details.result.properties.model,
-										manufacturer: details.result.properties.manufacturer
-									}))
-							)
-						);
-					})
+				
 					.then(detailsArray => {
 						setStore({ vehicleDetails: detailsArray });
 					})
@@ -111,26 +84,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore({ planets });
 						return planets;
 					})
-					.then(results => {
-						return Promise.all(
-							results.map(planet =>
-								fetch(`https://www.swapi.tech/api/planets/${planet.uid}`)
-									.then(response => response.json())
-									.then(details => ({
-										uid: planet.uid,
-										name: planet.name,
-										terrain: details.result.properties.terrain,
-										population: details.result.properties.population
-									}))
-							)
-						);
-					})
+				
 					.then(detailsArray => {
 						setStore({ planetDetails: detailsArray });
 					})
 					.catch(error => console.log("Error fetching planets:", error));
 			},
-
 			addFavorites: (itemName) => {
                 const store = getStore();
                 const favorites = [...store.favorites];
@@ -138,7 +97,14 @@ const getState = ({ getStore, getActions, setStore }) => {
                     favorites.push(itemName);
                     setStore({ favorites });
                 }
-            }
+            },
+
+            removeFavorite: (itemName) => {
+                const store = getStore();
+                const favorites = store.favorites.filter(name => name !== itemName);
+                setStore({ favorites });
+            },
+
         }
     };
 };

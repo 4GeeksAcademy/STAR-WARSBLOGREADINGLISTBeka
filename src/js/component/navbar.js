@@ -5,9 +5,13 @@ import "../../styles/index.css";
 import { Context } from "../store/appContext";
 
 export const Navbar = () => {
-    const { store } = useContext(Context);
+    const { store, actions } = useContext(Context);
 
     const favorites = Array.isArray(store.favorites) ? store.favorites : [];
+
+    const handleRemoveFavorite = (itemName) => {
+        actions.removeFavorite(itemName);
+    };
 
     return (
         <nav className="navbar mb-3">
@@ -22,15 +26,16 @@ export const Navbar = () => {
                 <button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Favorites
                 </button>
-                <ul className="dropdown-menu">
+                <ul className="dropdown-menu" id="dropdown-menu">
                     {favorites.length > 0 ? (
                         favorites.map((name, index) => (
-                            <li key={index}>
-                                <a className="dropdown-item" href="#">{name}</a>
+                            <li key={index} className="d-flex justify-content-between align-items-center">
+                                <a className="dropdown-item" href="#" id="listFavorites">{name}</a>
+                                <button className="btn btn-light" onClick={() => handleRemoveFavorite(name)}>🗑️</button>
                             </li>
                         ))
                     ) : (
-                        <li><a className="dropdown-item" href="#">No hay favoritos aún</a></li>
+                        <li><a className="dropdown-item" href="#">Not favorites</a></li>
                     )}
                 </ul>
             </div>
