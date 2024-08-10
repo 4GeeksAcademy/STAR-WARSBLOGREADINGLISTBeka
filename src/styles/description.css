@@ -1,0 +1,40 @@
+#img {
+    width: 20%;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-radius: 30px;
+
+}
+#card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+#contenido {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.details{
+    margin-top: 2%;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 1%;
+    color: red;
+    text-align: center;
+}
+p {
+    font-size: 13px;
+}
+
+#title{
+    font-size: 20px;
+}

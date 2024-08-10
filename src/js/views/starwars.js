@@ -23,16 +23,13 @@ export const StarWars = () => {
                 {store.characterDetails.map(character => (
                     <div key={character.uid} className="card me-3">
                         <img
-                            src={store.characterImageUrls[character.uid] || "https://example.com/images/default.jpg"}
+                            src={store.characterImageUrls[character.uid]}
                             className="card-img-top"
-                            alt={`${character.name}`}
+                            alt={character.name}
                             id="cardimg"
                         />
                         <div className="card-body" id="cardcontenido">
                             <h5>{character.name}</h5>
-                            <p>Gender: {character.gender}</p>
-                            <p>Hair Color: {character.hair_color}</p>
-                            <p>Eye Color: {character.eye_color}</p>
                         </div>
                         <div id="cardbutton">
                             <Link to={`/description/${character.uid}`}>
@@ -55,21 +52,25 @@ export const StarWars = () => {
                 {store.vehicleDetails.map(vehicle => (
                     <div key={vehicle.uid} className="card me-3">
                         <img
-                            src={store.vehicleImageUrls[vehicle.uid] || "https://example.com/images/default.jpg"}
+                            src={store.vehicleImageUrls[vehicle.uid]}
                             className="card-img-top"
-                            alt={`${vehicle.name}`}
+                            alt={vehicle.name}
                             id="cardimg"
                         />
                         <div className="card-body" id="cardcontenidovehicle">
                             <h5>{vehicle.name}</h5>
-                            <p>Model: {vehicle.model}</p>
-                            <p>Manufacturer: {vehicle.manufacturer}</p>
                         </div>
-                        <div>
+                        <div id="cardbutton">
                             <Link to={`/description/${vehicle.uid}`}>
                                 <button className="btn btn-danger">Learn More</button>
                             </Link>
-                            <button className="btn btn-warning" id="cardbuttonvehicle2" onClick={() => handleAddFavorite(vehicle.name)}>♥</button>
+                            <button
+                                className="btn btn-warning"
+                                id="cardbuttonvehicle2"
+                                onClick={() => handleAddFavorite(vehicle.name)}
+                            >
+                                ♥
+                            </button>
                         </div>
                     </div>
                 ))}
@@ -80,21 +81,25 @@ export const StarWars = () => {
                 {store.planetDetails.map(planet => (
                     <div key={planet.uid} className="card me-3">
                         <img
-                            src={store.planetImageUrls[planet.uid] || "https://example.com/images/default.jpg"}
+                            src={store.planetImageUrls[planet.uid]}
                             className="card-img-top"
-                            alt={`${planet.name}`}
+                            alt={planet.name}
                             id="cardimg"
                         />
                         <div className="card-body" id="cardcontenidoplanet">
                             <h5>{planet.name}</h5>
-                            <p>Terrain: {planet.terrain}</p>
-                            <p>Population: {planet.population}</p>
                         </div>
-                        <div>
+                        <div id="cardbutton">
                             <Link to={`/description/${planet.uid}`}>
                                 <button className="btn btn-danger">Learn More</button>
                             </Link>
-                            <button className="btn btn-warning" id="cardbuttonplanet2" onClick={() => handleAddFavorite(planet.name)}>♥</button>
+                            <button
+                                className="btn btn-warning"
+                                id="cardbuttonplanet2"
+                                onClick={() => handleAddFavorite(planet.name)}
+                            >
+                                ♥
+                            </button>
                         </div>
                     </div>
                 ))}
