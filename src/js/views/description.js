@@ -14,7 +14,6 @@ export const Description = () => {
                 if (id) {
                     let response, json;
 
-                    // Fetch character
                     response = await fetch(`https://www.swapi.tech/api/people/${id}`);
                     json = await response.json();
                     if (json.result && json.message === "ok") {

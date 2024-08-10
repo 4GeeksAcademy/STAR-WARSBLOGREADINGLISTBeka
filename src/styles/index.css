@@ -21,3 +21,9 @@ flex-direction: row;
     text-wrap: balance;
     margin-top: 0;
 }
+
+footer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
