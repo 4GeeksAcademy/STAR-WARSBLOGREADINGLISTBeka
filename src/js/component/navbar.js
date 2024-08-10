@@ -35,7 +35,7 @@ export const Navbar = () => {
                             </li>
                         ))
                     ) : (
-                        <li><a className="dropdown-item" href="#">Not favorites</a></li>
+                        <li><a className="dropdown-item" href="#">Empty</a></li>
                     )}
                 </ul>
             </div>
