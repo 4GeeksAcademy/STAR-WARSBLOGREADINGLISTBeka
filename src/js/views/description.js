@@ -3,62 +3,54 @@ import { useParams } from "react-router-dom";
 import "../../styles/description.css";
 
 export const Description = () => {
-    const { id } = useParams();
+    const { id, type } = useParams();
     const [data, setData] = useState(null);
-    const [type, setType] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                if (id) {
-                    let response, json;
+                let response;
 
+                if (type === "character") {
                     response = await fetch(`https://www.swapi.tech/api/people/${id}`);
-                    json = await response.json();
-                    if (json.result && json.message === "ok") {
-                        setData(json.result);
-                        setType("character");
-                        return;
-                    }
-
-                    // Fetch vehicle
+                } else if (type === "vehicle") {
                     response = await fetch(`https://www.swapi.tech/api/vehicles/${id}`);
-                    json = await response.json();
-                    if (json.result && json.message === "ok") {
-                        setData(json.result);
-                        setType("vehicle");
-                        return;
-                    }
-
-                    // Fetch planet
+                } else if (type === "planet") {
                     response = await fetch(`https://www.swapi.tech/api/planets/${id}`);
-                    json = await response.json();
-                    if (json.result && json.message === "ok") {
-                        setData(json.result);
-                        setType("planet");
-                        return;
-                    }
+                }
 
-                    // If no data was found
+                const json = await response.json();
+
+                if (json.result && json.message === "ok") {
+                    setData(json.result);
+                } else {
                     setData(null);
                 }
             } catch (error) {
                 console.error("Error fetching data:", error);
+                setData(null);
             } finally {
                 setLoading(false);
             }
         };
 
         fetchData();
-    }, [id]);
+    }, [id, type]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className="Loading">
+            <div><p id="loading">Loading</p></div>
+            <div class="loader">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>;
     }
 
     if (!data) {
-        return <div>Error loading data</div>;
+        return <div id="loading">Error loading data</div>;
     }
 
     const { properties } = data;
@@ -68,9 +60,11 @@ export const Description = () => {
             <div className="card" id="card">
                 <img
                     src={
-                        type === "character" ? `https://starwars-visualguide.com/assets/img/characters/${id}.jpg` :
-                        type === "vehicle" ? `https://starwars-visualguide.com/assets/img/vehicles/${id}.jpg` :
-                        `https://starwars-visualguide.com/assets/img/planets/${id}.jpg`
+                        type === "character"
+                            ? `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`
+                            : type === "vehicle"
+                                ? `https://starwars-visualguide.com/assets/img/vehicles/${id}.jpg`
+                                : `https://starwars-visualguide.com/assets/img/planets/${id}.jpg`
                     }
                     className="card-img-top"
                     alt={properties?.name || "No Image"}
@@ -85,27 +79,27 @@ export const Description = () => {
                 {type === "planet" && (
                     <>
                         <h6>
-                            Name
+                            Nombre
                             <p>{properties.name}</p>
                         </h6>
                         <h6>
-                            Climate
+                            Clima
                             <p>{properties.climate}</p>
                         </h6>
                         <h6>
-                            Population
+                            Población
                             <p>{properties.population}</p>
                         </h6>
                         <h6>
-                            Orbital Period
+                            Período Orbital
                             <p>{properties.orbital_period}</p>
                         </h6>
                         <h6>
-                            Rotation Period
+                            Período de Rotación
                             <p>{properties.rotation_period}</p>
                         </h6>
                         <h6>
-                            Diameter
+                            Diámetro
                             <p>{properties.diameter}</p>
                         </h6>
                     </>
@@ -113,43 +107,43 @@ export const Description = () => {
                 {type === "vehicle" && (
                     <>
                         <h6>
-                            Name
+                            Nombre
                             <p>{properties.name}</p>
                         </h6>
                         <h6>
-                            Vehicle Class
+                            Clase de Vehículo
                             <p>{properties.vehicle_class}</p>
                         </h6>
                         <h6>
-                            Manufacturer
+                            Fabricante
                             <p>{properties.manufacturer}</p>
                         </h6>
                         <h6>
-                            Cost in Credits
+                            Costo en Créditos
                             <p>{properties.cost_in_credits}</p>
                         </h6>
                         <h6>
-                            Length
+                            Longitud
                             <p>{properties.length}</p>
                         </h6>
                         <h6>
-                            Crew
+                            Tripulación
                             <p>{properties.crew}</p>
                         </h6>
                         <h6>
-                            Passengers
+                            Pasajeros
                             <p>{properties.passengers}</p>
                         </h6>
                         <h6>
-                            Max Atmosphering Speed
+                            Velocidad Máxima Atmosférica
                             <p>{properties.max_atmosphering_speed}</p>
                         </h6>
                         <h6>
-                            Cargo Capacity
+                            Capacidad de Carga
                             <p>{properties.cargo_capacity}</p>
                         </h6>
                         <h6>
-                            Consumables
+                            Consumibles
                             <p>{properties.consumables}</p>
                         </h6>
                     </>
@@ -157,35 +151,35 @@ export const Description = () => {
                 {type === "character" && (
                     <>
                         <h6>
-                            Name
+                            Nombre
                             <p>{properties.name}</p>
                         </h6>
                         <h6>
-                            Height
+                            Altura
                             <p>{properties.height}</p>
                         </h6>
                         <h6>
-                            Mass
+                            Peso
                             <p>{properties.mass}</p>
                         </h6>
                         <h6>
-                            Hair Color
+                            Color de Cabello
                             <p>{properties.hair_color}</p>
                         </h6>
                         <h6>
-                            Skin Color
+                            Color de Piel
                             <p>{properties.skin_color}</p>
                         </h6>
                         <h6>
-                            Eye Color
+                            Color de Ojos
                             <p>{properties.eye_color}</p>
                         </h6>
                         <h6>
-                            Birth Year
+                            Año de Nacimiento
                             <p>{properties.birth_year}</p>
                         </h6>
                         <h6>
-                            Gender
+                            Género
                             <p>{properties.gender}</p>
                         </h6>
                     </>

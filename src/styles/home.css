@@ -4,8 +4,8 @@
 }
 
 #cardimg {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     align-items: center;
     border-radius: 30px;
 
@@ -22,7 +22,6 @@ p {
 
 #cardcontenido, #cardcontenidovehicle, #cardcontenidoplanet {
     width: 150px;
-    height: 200px;
     text-align: start;   
     align-items: center;
     display: flex;

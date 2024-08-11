@@ -32,7 +32,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "24": "https://starwars-visualguide.com/assets/img/vehicles/24.jpg"
             },
             planetImageUrls: {
-                "1": "https://starwars-visualguide.com/assets/img/planets/1.jpg",
+                "1": "https://static.wikia.nocookie.net/esstarwars/images/b/b0/Tatooine_TPM.png/revision/latest?cb=20131214162357",
                 "2": "https://starwars-visualguide.com/assets/img/planets/2.jpg",
                 "3": "https://starwars-visualguide.com/assets/img/planets/3.jpg",
                 "4": "https://starwars-visualguide.com/assets/img/planets/4.jpg",

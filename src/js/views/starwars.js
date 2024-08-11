@@ -10,7 +10,7 @@ export const StarWars = () => {
         actions.getCharacters();
         actions.getVehicles();
         actions.getPlanets();
-    }, [actions]);
+    }, []);
 
     const handleAddFavorite = (itemName) => {
         actions.addFavorites(itemName);
@@ -32,7 +32,7 @@ export const StarWars = () => {
                             <h5>{character.name}</h5>
                         </div>
                         <div id="cardbutton">
-                            <Link to={`/description/${character.uid}`}>
+                            <Link to={`/description/${character.uid}/character`}>
                                 <button className="btn btn-danger">Learn More</button>
                             </Link>
                             <button
@@ -61,7 +61,7 @@ export const StarWars = () => {
                             <h5>{vehicle.name}</h5>
                         </div>
                         <div id="cardbutton">
-                            <Link to={`/description/${vehicle.uid}`}>
+                            <Link to={`/description/${vehicle.uid}/vehicle`}>
                                 <button className="btn btn-danger">Learn More</button>
                             </Link>
                             <button
@@ -90,7 +90,7 @@ export const StarWars = () => {
                             <h5>{planet.name}</h5>
                         </div>
                         <div id="cardbutton">
-                            <Link to={`/description/${planet.uid}`}>
+                            <Link to={`/description/${planet.uid}/planet`}>
                                 <button className="btn btn-danger">Learn More</button>
                             </Link>
                             <button
